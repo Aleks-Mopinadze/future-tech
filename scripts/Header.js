@@ -1,0 +1,38 @@
+class Header {
+  selectors = {
+    root: "[data-js-header]",
+    overlay: "[data-js-header-overlay]",
+    burrgerButton: "[data-js-header-burger-button]",
+  };
+
+  stateClasses = {
+    isActive: "is-active",
+    isLock: "is-lock",
+  };
+
+  constructor() {
+    this.rootElement = document.querySelector(this.selectors.root);
+    this.overlayElement = this.rootElement.querySelector(
+      this.selectors.overlay,
+    );
+    this.burrgerButtonElement = this.rootElement.querySelector(
+      this.selectors.burrgerButton,
+    );
+    this.bindEvents();
+  }
+
+  onBurrgerButtonClick = () => {
+    this.burrgerButtonElement.classList.toggle(this.stateClasses.isActive);
+    this.overlayElement.classList.toggle(this.stateClasses.isActive);
+    document.documentElement.classList.toggle(this.stateClasses.isLock);
+  };
+
+  bindEvents() {
+    this.burrgerButtonElement.addEventListener(
+      "click",
+      this.onBurrgerButtonClick,
+    );
+  }
+}
+
+export default Header;
